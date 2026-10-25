@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đất Lành — Xưởng gốm thủ công</title>
+<meta name="description" content="Xưởng gốm thủ công Đất Lành — làm gốm bằng tay, bát đĩa hằng ngày, bình hoa, chén trà và lớp học trải nghiệm nặn gốm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #E7E1D6;
+    color: #2B2B26;
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 600; line-height: 1.2; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+  section.block { padding: 96px 0 0; }
+  section.block:last-of-type { padding-bottom: 96px; }
+  .section-title { font-size: 40px; margin-bottom: 16px; }
+  /* Vệt men chảy: đường kẻ men ngọc 64px, dày 3px, kèm giọt men tròn 10px ở đầu phải */
+  .men-line { display: flex; align-items: center; margin-bottom: 32px; }
+  .men-line .bar { width: 64px; height: 3px; background: #2E6B62; }
+  .men-line .drop { width: 10px; height: 10px; border-radius: 50%; background: #2E6B62; margin-left: 0; }
+  .muted { color: #6E6A60; }
+  .caption { font-size: 14px; color: #6E6A60; margin-top: 12px; }
+  .price { color: #2E6B62; font-weight: 700; }
+  .btn {
+    display: inline-block; background: #2E6B62; color: #E7E1D6;
+    padding: 14px 28px; border-radius: 4px; text-decoration: none; font-weight: 500;
+    border: none; cursor: pointer; font-size: 17px; font-family: "Be Vietnam Pro", sans-serif;
+  }
+  .btn:hover { opacity: 0.9; }
+
+  /* 1. Hero 100vh */
+  .hero { position: relative; height: 100vh; min-height: 560px; overflow: hidden; }
+  .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .overlay { position: absolute; inset: 0; background: rgba(43, 43, 38, 0.45); }
+  .hero .content {
+    position: relative; z-index: 1; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    max-width: 1120px; margin: 0 auto; padding: 0 48px; color: #E7E1D6;
+  }
+  .hero h1 { font-size: 64px; margin-bottom: 16px; }
+  .hero p.tagline { font-size: 20px; margin-bottom: 32px; max-width: 560px; }
+
+  /* 3. Bộ sưu tập: ảnh lớn xếp dọc, không lưới thẻ */
+  .collection-item { margin-bottom: 96px; }
+  .collection-item:last-child { margin-bottom: 0; }
+  .collection-item img {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+    border: 1px solid #B07A4A; background: #D5CCC0;
+  }
+  .collection-item h3 { font-size: 32px; margin-top: 20px; }
+
+  /* 4. Quy trình: nền tối đất */
+  .process { background: #2B2B26; color: #E7E1D6; }
+  .process .wrap { padding-top: 96px; padding-bottom: 96px; }
+  .process .men-line .bar, .process .men-line .drop { background: #2E6B62; }
+  .step { display: flex; gap: 32px; margin-bottom: 48px; align-items: flex-start; }
+  .step:last-child { margin-bottom: 0; }
+  .step .num { font-family: "Cormorant Garamond", serif; font-size: 56px; line-height: 1; color: #2E6B62; min-width: 90px; }
+  .step h3 { font-size: 30px; margin-bottom: 4px; }
+  .step p { color: #E7E1D6; }
+
+  /* 5. Lớp học */
+  .class-img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; border: 1px solid #B07A4A; background: #D5CCC0; margin-bottom: 24px; }
+  .class-info p { margin-bottom: 12px; }
+
+  /* 6. Cảm nhận */
+  .quote-card { background: #D5CCC0; padding: 32px; margin-bottom: 24px; border-left: 3px solid #B07A4A; }
+  .quote-card:last-child { margin-bottom: 0; }
+  .quote-card p { font-style: italic; margin-bottom: 12px; }
+  .quote-card .who { color: #6E6A60; font-size: 15px; }
+
+  /* 7. Form: chỉ giao diện */
+  .form-card { background: #D5CCC0; padding: 32px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-weight: 500; margin-bottom: 8px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 14px; font-size: 16px; font-family: "Be Vietnam Pro", sans-serif;
+    border: 1px solid #B07A4A; background: #E7E1D6; color: #2B2B26; border-radius: 4px;
+  }
+  .form-note { font-size: 14px; color: #6E6A60; margin-top: 16px; }
+  #form-msg { display: none; margin-top: 20px; padding: 16px; background: #E7E1D6; border-left: 3px solid #2E6B62; }
+
+  /* 8. Chân trang */
+  footer { background: #D5CCC0; padding: 64px 0; }
+  footer p { margin-bottom: 8px; }
+  footer .sample-note { font-size: 14px; color: #6E6A60; margin-top: 16px; }
+
+  @media (max-width: 768px) {
+    .wrap, .hero .content { padding: 0 24px; }
+    section.block { padding-top: 72px; }
+    section.block:last-of-type { padding-bottom: 72px; }
+    .section-title { font-size: 34px; }
+    .hero h1 { font-size: 48px; }
+    .collection-item { margin-bottom: 72px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .hero .content { padding: 0 24px; }
+    section.block { padding-top: 64px; }
+    section.block:last-of-type { padding-bottom: 64px; }
+    .section-title { font-size: 30px; }
+    .hero h1 { font-size: 40px; }
+    .step { flex-direction: column; gap: 8px; }
+    .form-card, .quote-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Hero -->
+<header class="hero">
+  <img class="bg" src="https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?w=1920&q=80" alt="Bàn tay vuốt đất sét trên bàn xoay trong xưởng gốm (ảnh mẫu)">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>Đất Lành</h1>
+    <p class="tagline">Gốm làm bằng tay, chậm rãi và thật thà — từ nắm đất ướt đến chiếc bát trên bàn ăn nhà bạn.</p>
+    <a class="btn" href="#bo-suu-tap">Xem bộ sưu tập</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 2. Giới thiệu + triết lý -->
+  <section class="block" id="gioi-thieu">
+    <h2 class="section-title">Làm chậm, làm thật</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+    <p>Đất Lành là một xưởng gốm nhỏ, nơi mọi món đồ đều đi qua đôi tay người thợ — không khuôn đúc hàng loạt, không vội vàng. Mỗi chiếc bát, chiếc bình đều mang dấu tay, vết men rạn và những lệch lạc rất riêng của đồ thủ công.</p>
+    <p style="margin-top: 16px;">Chúng tôi tin rằng đồ dùng hằng ngày xứng đáng được làm tử tế: đất tốt, men lành, nung đủ lửa. Làm chậm một chút, để món đồ ở lại với bạn lâu hơn.</p>
+  </section>
+
+  <!-- 3. Bộ sưu tập -->
+  <section class="block" id="bo-suu-tap">
+    <h2 class="section-title">Bộ sưu tập</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+
+    <article class="collection-item">
+      <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=1000&q=80" alt="Bát đĩa gốm hằng ngày men xanh ngọc xếp trên kệ gỗ (ảnh mẫu)">
+      <h3>Bát đĩa hằng ngày</h3>
+      <p class="muted">Bát, đĩa, tô men ngọc và men đất — dày dặn, cầm chắc tay, dùng mỗi ngày càng đẹp.</p>
+      <p><span class="price">Giá mẫu: 120.000–350.000đ/món</span></p>
+    </article>
+
+    <article class="collection-item">
+      <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1000&q=80" alt="Bình hoa gốm men rạn dáng cao trên nền tối (ảnh mẫu)">
+      <h3>Bình hoa</h3>
+      <p class="muted">Bình dáng cao, dáng tròn, men rạn wabi-sabi — cắm một cành khô cũng thành góc nhà đẹp.</p>
+      <p><span class="price">Giá mẫu: 450.000–1.200.000đ/món</span></p>
+    </article>
+
+    <article class="collection-item">
+      <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1000&q=80" alt="Chén trà gốm men sáng xếp cạnh nhau (ảnh mẫu)">
+      <h3>Chén trà</h3>
+      <p class="muted">Chén trà nhỏ, miệng loe nhẹ, men mịn — cho buổi trà chậm buổi sáng.</p>
+      <p><span class="price">Giá mẫu: 180.000–420.000đ/chiếc</span></p>
+    </article>
+  </section>
+
+</main>
+
+<!-- 4. Quy trình -->
+<section class="process">
+  <div class="wrap">
+    <h2 class="section-title">Từ đất thành gốm</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+    <div class="step">
+      <div class="num">01</div>
+      <div><h3>Nhào đất</h3><p>Đất sét được nhào kỹ cho dẻo đều, đuổi hết bọt khí trước khi lên bàn xoay.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">02</div>
+      <div><h3>Tạo hình</h3><p>Vuốt tay trên bàn xoay, từng chiếc một — không hai món nào giống hệt nhau.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">03</div>
+      <div><h3>Tráng men</h3><p>Nhúng men, phủ men bằng tay; vệt men chảy tự nhiên là dấu riêng của mỗi món.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">04</div>
+      <div><h3>Nung lò</h3><p>Nung đủ lửa cho men chín, đất cứng chắc rồi mới xuất xưởng.</p></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- 5. Lớp học trải nghiệm -->
+  <section class="block" id="lop-hoc">
+    <h2 class="section-title">Lớp học trải nghiệm</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+    <img class="class-img" src="https://images.pexels.com/photos/6023597/pexels-photo-6023597.jpeg?auto=compress&cs=tinysrgb&w=1260" alt="Học viên nặn gốm cùng nhau trong lớp học trải nghiệm (ảnh mẫu)">
+    <div class="class-info">
+      <p>Một buổi trong xưởng: tự tay nhào đất, vuốt một chiếc bát hoặc chén của riêng mình, rồi để xưởng tráng men và nung giúp bạn.</p>
+      <p><strong>Lịch mẫu:</strong> sáng thứ Bảy và Chủ nhật, 9:00–12:00.</p>
+      <p><span class="price">Giá mẫu: 450.000đ/buổi</span> — đã gồm đất và nung.</p>
+      <p style="margin-top: 20px;"><a class="btn" href="#lien-he">Đặt lịch học thử</a></p>
+    </div>
+  </section>
+
+  <!-- 6. Cảm nhận khách hàng -->
+  <section class="block" id="cam-nhan">
+    <h2 class="section-title">Người dùng nói gì</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+    <div class="quote-card">
+      <p>“Chiếc bát men ngọc cầm rất thích tay, ăn cơm hằng ngày mà vẫn thấy vui.”</p>
+      <div class="who">— [CẦN BỔ SUNG]</div>
+    </div>
+    <div class="quote-card">
+      <p>“Đi học một buổi mà mê luôn, giờ cuối tuần nào cũng muốn quay lại xưởng.”</p>
+      <div class="who">— [CẦN BỔ SUNG]</div>
+    </div>
+    <div class="quote-card">
+      <p>“Bình hoa men rạn để góc nhà, cắm cành khô cũng đẹp.”</p>
+      <div class="who">— [CẦN BỔ SUNG]</div>
+    </div>
+  </section>
+
+  <!-- 7. Form liên hệ / đặt lịch (chỉ giao diện) -->
+  <section class="block" id="lien-he">
+    <h2 class="section-title">Liên hệ / Đặt lịch</h2>
+    <div class="men-line"><span class="bar"></span><span class="drop"></span></div>
+    <form class="form-card" id="contact-form">
+      <div class="field">
+        <label for="hoten">Họ tên</label>
+        <input id="hoten" name="hoten" type="text" placeholder="Tên của bạn" required>
+      </div>
+      <div class="field">
+        <label for="dienthoai">Điện thoại</label>
+        <input id="dienthoai" name="dienthoai" type="tel" placeholder="Số điện thoại liên hệ" required>
+      </div>
+      <div class="field">
+        <label for="loai">Loại yêu cầu</label>
+        <select id="loai" name="loai">
+          <option>Đặt lịch học thử</option>
+          <option>Mua sản phẩm</option>
+          <option>Đặt làm theo yêu cầu</option>
+          <option>Câu hỏi khác</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="ghichu">Ghi chú</label>
+        <textarea id="ghichu" name="ghichu" rows="4" placeholder="Bạn muốn nhắn gì cho xưởng?"></textarea>
+      </div>
+      <button class="btn" type="submit">Gửi yêu cầu</button>
+      <p class="form-note">Form này chỉ là giao diện mẫu — gửi đi sẽ không chuyển thật tới xưởng.</p>
+      <div id="form-msg">Cảm ơn bạn! Đây là form giao diện mẫu nên yêu cầu chưa được gửi thật — xưởng sẽ liên hệ khi form chính thức hoạt động.</div>
+    </form>
+  </section>
+
+</main>
+
+<!-- 8. Chân trang -->
+<footer>
+  <div class="wrap">
+    <h2 style="font-size: 32px; margin-bottom: 12px;">Đất Lành</h2>
+    <p>Địa chỉ: [CẦN BỔ SUNG]</p>
+    <p>Điện thoại: [CẦN BỔ SUNG]</p>
+    <p>Giờ mở cửa: [CẦN BỔ SUNG]</p>
+    <p>Người phụ trách: [CẦN BỔ SUNG]</p>
+    <p class="sample-note">Ảnh và giá trên trang là ảnh mẫu / giá mẫu.</p>
+  </div>
+</footer>
+
+<script>
+  // Form CHỈ làm giao diện: submit chỉ preventDefault, không fetch, không action, không mailto, không tel:.
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('form-msg').style.display = 'block';
+  });
+</script>
+</body>
+</html>
